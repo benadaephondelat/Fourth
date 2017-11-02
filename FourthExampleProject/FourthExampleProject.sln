@@ -21,8 +21,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer.Interfaces", "Dat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{98191FDA-99BD-4E01-BD9F-97A94D82C08D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingProject", "TestingProject\TestingProject.csproj", "{FD754FCB-6A90-4B43-88B8-A180CED074E2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{783167E1-147C-421C-8261-47A6E60F6263}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLayer.Interfaces", "ServiceLayer.Interfaces\ServiceLayer.Interfaces.csproj", "{E4C84018-F9C8-4D3C-92D5-519EE28AEDE7}"
@@ -53,10 +51,6 @@ Global
 		{98191FDA-99BD-4E01-BD9F-97A94D82C08D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98191FDA-99BD-4E01-BD9F-97A94D82C08D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98191FDA-99BD-4E01-BD9F-97A94D82C08D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FD754FCB-6A90-4B43-88B8-A180CED074E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FD754FCB-6A90-4B43-88B8-A180CED074E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FD754FCB-6A90-4B43-88B8-A180CED074E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FD754FCB-6A90-4B43-88B8-A180CED074E2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{783167E1-147C-421C-8261-47A6E60F6263}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{783167E1-147C-421C-8261-47A6E60F6263}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{783167E1-147C-421C-8261-47A6E60F6263}.Release|Any CPU.ActiveCfg = Release|Any CPU

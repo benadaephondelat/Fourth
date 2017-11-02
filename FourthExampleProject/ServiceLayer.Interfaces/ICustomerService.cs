@@ -1,10 +1,11 @@
 ﻿namespace ServiceLayer.Interfaces
 {
-    using Models;
+    using ModelsInterfaces;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public interface ICustomerService
     {
-        IEnumerable<Customer> GetAllCustomers();
+        Task<IEnumerable<ICustomerGridModel>> GetAllCustomersAsync();
     }
 }
