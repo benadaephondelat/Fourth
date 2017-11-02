@@ -6,12 +6,14 @@ namespace DataLayer.Migrations
     {
         public Configuration()
         {
-            this.AutomaticMigrationsEnabled = false;
-            this.AutomaticMigrationDataLossAllowed = false;
+            this.AutomaticMigrationsEnabled = true;
+            this.AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(ApplicationDbContext context)
         {
+            
+           // Sql("UPDATE dbo.Table SET Created = GETDATE()");
         }
     }
 }

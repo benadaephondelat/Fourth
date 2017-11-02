@@ -5,6 +5,8 @@
 
     public interface IData
     {
+        IGenericRepository<ApplicationUser> Users { get; }
+
         IGenericRepository<Category> Categories { get; }
 
         IGenericRepository<Customer> Customers { get; }

@@ -19,6 +19,11 @@
             this.repositories = new Dictionary<Type, object>();
         }
 
+        public IGenericRepository<ApplicationUser> Users
+        {
+            get { return GetRepository<ApplicationUser>(); }
+        }
+
         public IGenericRepository<Category> Categories
         {
             get

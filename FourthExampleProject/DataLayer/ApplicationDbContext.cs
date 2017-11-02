@@ -4,12 +4,14 @@ namespace DataLayer
 
     using Models;
     using Interfaces;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Migrations;
 
-    public partial class ApplicationDbContext : DbContext, IApplicationDbContext
+    public partial class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {
-        public ApplicationDbContext() : base("name=Northwing")
+        public ApplicationDbContext() : base("name=Northwind")
         {
-            
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
         }
 
         public virtual IDbSet<Category> Categories { get; set; }
@@ -107,6 +109,8 @@ namespace DataLayer
             modelBuilder.Entity<Territory>()
                 .Property(e => e.TerritoryDescription)
                 .IsFixedLength();
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
