@@ -1,7 +1,6 @@
 ﻿namespace WebAPI.Controllers
 {
     using System.Web.Http;
-    using System.Threading.Tasks;
     using System.Collections.Generic;
 
     using ServiceLayer.Interfaces;
@@ -23,10 +22,9 @@
 
         [HttpGet]
         [Route("GetCustomers")]
-        public async Task<IHttpActionResult> GetAllCustomers()
+        public IHttpActionResult GetAllCustomers()
         {
-            //TODO REMOVE THAT "ASYNC" CALL, BECAUSE THAT LIBRARY CAN NOT BE TRUSTED
-            IEnumerable<ICustomerGridModel> customers = await this.customerService.GetAllCustomersAsync();
+            IEnumerable<ICustomerGridModel> customers = this.customerService.GetAllCustomers();
 
             var result = new
             {

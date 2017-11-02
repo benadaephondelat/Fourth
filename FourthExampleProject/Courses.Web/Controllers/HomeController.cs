@@ -12,30 +12,45 @@
 
     public class HomeController : Controller
     {
-        public async Task<ActionResult> Index()
-        {
-            HttpClient client = new HttpClient();
+        /// <summary>
+        /// <seealso cref="https://aspnetmonsters.com/2016/08/2016-08-27-httpclientwrong/"/>
+        /// </summary>
+        private static HttpClient httpClient = new HttpClient();
 
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult CustomersGrid()
+        {
+            return View("CustomersGrid");
+        }
+
+        [HttpGet]
+        public ActionResult GetCustomersGrid(string param)
+        {
             List<CustomerViewModel> customersGridModelList = new List<CustomerViewModel>();
 
             string route = "http://localhost:58768/api/Customers/GetCustomers";
 
-            Task task = client.GetAsync(route).ContinueWith((resultTask) =>
+            Task task = httpClient.GetAsync(route).ContinueWith((resultTask) =>
             {
-                 HttpResponseMessage response = resultTask.Result;
+                HttpResponseMessage response = resultTask.Result;
 
-                 Task<string> responseTask = response.Content.ReadAsStringAsync();
+                Task<string> responseTask = response.Content.ReadAsStringAsync();
 
-                 responseTask.Wait();
+                responseTask.Wait();
 
-                 string jsonString = (JObject.Parse(responseTask.Result)["result"]).ToString();
+                string jsonString = (JObject.Parse(responseTask.Result)["result"]).ToString();
 
-                 customersGridModelList = JsonConvert.DeserializeObject<List<CustomerViewModel>>(jsonString);
-             });
+                customersGridModelList = JsonConvert.DeserializeObject<List<CustomerViewModel>>(jsonString);
+            });
 
             task.Wait();
 
-            return View();
+            return PartialView("_CustomersGrid", customersGridModelList);
         }
 
         public ActionResult About()

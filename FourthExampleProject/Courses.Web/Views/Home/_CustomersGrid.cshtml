@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Courses.Web.Models.Customer.ViewModels.CustomerViewModel>
+
+@(Html
+    .Grid(Model)
+    .Build(columns =>
+    {
+        columns.Add(model => model.ID).Titled("Customer ID");
+        columns.Add(model => model.Name).Titled("Customer Name");
+        columns.Add(model => model.OrdersCount).Titled("Number of orders");
+    })
+    .Pageable(pager =>
+    {
+        pager.PagesToDisplay = 2;
+        pager.RowsPerPage = 10;
+    })
+    .Filterable()
+    .Sortable()
+    .Empty("No data found")
+)

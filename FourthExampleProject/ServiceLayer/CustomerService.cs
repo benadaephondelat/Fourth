@@ -18,15 +18,15 @@
             this.data = data;
         }
 
-        public async Task<IEnumerable<ICustomerGridModel>> GetAllCustomersAsync()
+        public IEnumerable<ICustomerGridModel> GetAllCustomers()
         {
-            var customers = this.data.Customers.All().AsParallel().Select(c => new CustomerGridModel
+            var customers = this.data.Customers.All().Select(c => new CustomerGridModel
             {
                 Id = c.CustomerID,
                 Name = c.CompanyName,
                 OrdersCount = c.Orders.Count(),
 
-            }).OrderBy(c => c.Name).ToList();
+            }).OrderByDescending(c => c.OrdersCount).ToList();
 
             return customers;
         }

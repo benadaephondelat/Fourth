@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "CustomersGrid";
+}
+
+<h2>CustomersGrid</h2>
+
+<link href="~/Content/MvcGrid/mvc-grid.css" rel="stylesheet">
+<script src="http://code.jquery.com/jquery-2.2.4.js"></script>
+<script src="~/Scripts/MvcGrid/mvc-grid.js"></script>
+
+<div id="customers-grid-container">
+    @Html.AjaxGrid(Url.Action("GetCustomersGrid", new { param = "value" }))
+</div>
+
+<script>
+    $('.mvc-grid').mvcgrid();
+</script>
