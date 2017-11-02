@@ -1,0 +1,9 @@
+FourthExampleProject/packages/
+FourthExampleProject/DataLayer.Interfaces/obj/
+FourthExampleProject/DataLayer/obj/Debug/
+FourthExampleProject/Models/obj/Debug/
+FourthExampleProject/ServiceLayer/obj/
+FourthExampleProject/TestingProject/obj/Debug/
+FourthExampleProject/WebAPI/obj/Debug/
+FourthExampleProject/TestingProject/bin/Debug/
+FourthExampleProject/ServiceLayer.Interfaces/obj/
