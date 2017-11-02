@@ -12,3 +12,8 @@ FourthExampleProject/Courses.Web/bin/
 FourthExampleProject/WebAPI/bin/
 FourthExampleProject/Models/bin/
 FourthExampleProject/Courses.Web/obj/Debug/
+FourthExampleProject/Bootstrapper/bin/Debug/
+FourthExampleProject/DataLayer/bin/Debug/
+FourthExampleProject/ServiceLayer.Interfaces/bin/Debug/
+FourthExampleProject/ServiceLayer/bin/Debug/
+FourthExampleProject/DataLayer.Interfaces/bin/Debug/

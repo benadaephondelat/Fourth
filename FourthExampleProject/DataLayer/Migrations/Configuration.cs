@@ -12,8 +12,6 @@ namespace DataLayer.Migrations
 
         protected override void Seed(ApplicationDbContext context)
         {
-            
-           // Sql("UPDATE dbo.Table SET Created = GETDATE()");
         }
     }
 }

@@ -59,12 +59,17 @@
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="Data\Data.cs" />
-    <Compile Include="Migrations\201711021256142_RunSqlScript.cs" />
-    <Compile Include="Migrations\201711021256142_RunSqlScript.Designer.cs">
-      <DependentUpon>201711021256142_RunSqlScript.cs</DependentUpon>
+    <Compile Include="Migrations\201711021502445_SeedData.cs" />
+    <Compile Include="Migrations\201711021502445_SeedData.Designer.cs">
+      <DependentUpon>201711021502445_SeedData.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Repository\GenericRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -82,9 +87,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201711021256142_RunSqlScript.resx">
-      <DependentUpon>201711021256142_RunSqlScript.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711021502445_SeedData.resx">
+      <DependentUpon>201711021502445_SeedData.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Migrations\SeedData_Up.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

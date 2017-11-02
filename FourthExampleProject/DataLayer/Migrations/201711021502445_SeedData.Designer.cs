@@ -7,13 +7,13 @@ namespace DataLayer.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class RunSqlScript : IMigrationMetadata
+    public sealed partial class SeedData : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RunSqlScript));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(SeedData));
         
         string IMigrationMetadata.Id
         {
-            get { return "201711021256142_RunSqlScript"; }
+            get { return "201711021502445_SeedData"; }
         }
         
         string IMigrationMetadata.Source

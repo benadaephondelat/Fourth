@@ -2,13 +2,12 @@ namespace DataLayer.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
-    using System.IO;
-
-    public partial class RunSqlScript : DbMigration
+    
+    public partial class SeedData : DbMigration
     {
         public override void Up()
         {
-            //TODO EXECUTE INSERT DATA ONLY SCRIPT, REMOVE CREATE TABLE...
+            Sql(Properties.Resources.SeedData_Up.ToString());
         }
         
         public override void Down()

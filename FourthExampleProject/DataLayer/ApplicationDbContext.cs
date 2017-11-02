@@ -6,6 +6,7 @@ namespace DataLayer
     using Interfaces;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Migrations;
+    using System.Data.Entity.Migrations;
 
     public partial class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {
