@@ -2,15 +2,15 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
+<div class="jumbotron align-center ">
     <h2>Customers Project</h2>
     <p>
-        <a href="https://github.com/benadaephondelat/Fourth" target="_blank" class="btn btn-primary btn-lg">
-            Visit Github repository &raquo;
-        </a>
+        @Html.ActionLink("Click here to view Customers Grid", "CustomersGrid", null, new { @class = "btn btn-primary btn-lg" })
     </p>
 </div>
 
 <div class="row">
-    @Html.ActionLink("Click here to view Customers Grid", "CustomersGrid", null, new { @class = "btn btn-lg" })
+    <a href="https://github.com/benadaephondelat/Fourth" target="_blank" class="btn btn-link">
+        Visit Github repository &raquo;
+    </a>
 </div>

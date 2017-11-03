@@ -1,10 +1,54 @@
 ﻿@model Courses.Web.Models.Customer.ViewModels.CustomerDetailsViewModel
 
-<h4>@Model.Address</h4>
-<h4>@Model.CompanyName</h4>
-<h4>@Model.CustomerId</h4>
+<h2 class="align-center">Customer Details</h2>
+
+<ul class="list-group customer-details-left">
+    <li class="list-group-item list-group-item-light">
+        Company Name: @Model.CompanyName
+    </li>
+
+    <li class="list-group-item list-group-item-light">
+        Contact Name: @Model.ContactName
+    </li>
+
+    <li class="list-group-item list-group-item-light">
+        Contact Title: @Model.ContactTitle
+    </li>
+
+    <li class="list-group-item list-group-item-light">
+        Phone: @Model.Phone
+    </li>
+
+    <li class="list-group-item list-group-item-light">
+        Fax: @Model.Fax
+    </li>
+</ul>
+
+<ul class="list-group customer-details-right">
+    <li class="list-group-item list-group-item-light">
+        Address: @Model.Address
+    </li>
+
+    <li class="list-group-item list-group-item-light">
+        Country: @Model.Country
+    </li>
+
+    <li class="list-group-item list-group-item-light">
+        City: @Model.City
+    </li>
+
+    <li class="list-group-item list-group-item-light">
+        Region: @Model.Region
+    </li>
+
+    <li class="list-group-item list-group-item-light">
+        Postal Code: @Model.PostalCode
+    </li>
+</ul>
 
 @Html.AjaxGrid(Url.Action("GetOrdersGrid", new { customerId = Model.CustomerId }))
+
+@Html.ActionLink("Back to customers Grid", "CustomersGrid", "Home", null, new {@class="align-center"})  &raquo;
 
 <script>
     $('.mvc-grid').mvcgrid();

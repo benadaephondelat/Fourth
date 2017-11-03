@@ -21,8 +21,15 @@
             bundles.Add(new ScriptBundle("~/bundles/customersGridModule")
                    .Include("~/Scripts/Custom/customersGridModule.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/mvcGrid")
+                   .Include("~/Scripts/jquery-2.2.4.js")
+                   .Include("~/Scripts/MvcGrid/mvc-grid.js"));
+
             bundles.Add(new StyleBundle("~/Content/css")
                    .Include("~/Content/bootstrap.css", "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/mvc-grid-css")
+                   .Include("~/Content/MvcGrid/mvc-grid.css"));
         }
     }
 }
