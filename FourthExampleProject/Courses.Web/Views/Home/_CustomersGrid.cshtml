@@ -4,16 +4,18 @@
     .Grid(Model)
     .Build(columns =>
     {
-        columns.Add(model => model.ID).Titled("Customer ID");
+        columns.Add(model => model.ID).Titled("Customer ID").Css("customer-id");
         columns.Add(model => model.Name).Titled("Customer Name");
         columns.Add(model => model.OrdersCount).Titled("Number of orders");
     })
     .Pageable(pager =>
     {
-        pager.PagesToDisplay = 2;
+        pager.PagesToDisplay = 5;
         pager.RowsPerPage = 10;
     })
     .Filterable()
     .Sortable()
     .Empty("No data found")
 )
+
+@Scripts.Render("~/bundles/customersGridModule")
