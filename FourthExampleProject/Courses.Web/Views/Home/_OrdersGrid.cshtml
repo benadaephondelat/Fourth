@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Courses.Web.Models.Customer.ViewModels.CustomerOrderDetailsGridViewModel>
+
+@(Html
+    .Grid(Model)
+    .Build(columns =>
+    {
+        columns.Add(model => model.OrderSum).Titled("Order Total Sum");
+        columns.Add(model => model.ProductsCount).Titled("Order Products Count");
+        columns.Add(model => model.PossibleProblem).Titled("Possible problem?");
+    })
+    .Pageable(pager =>
+    {
+        pager.PagesToDisplay = 5;
+        pager.RowsPerPage = 10;
+    })
+    .Filterable()
+    .Sortable()
+    .Empty("No data found")
+)

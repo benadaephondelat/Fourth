@@ -47,5 +47,19 @@
 
             return this.Ok(result);
         }
+
+        [HttpGet]
+        [Route("GetCustomerOrders/{id}")]
+        public IHttpActionResult GetCustomerOrders(string id)
+        {
+            var customerOrdersDetails = this.customerService.GetCustomerOrdersDetailsByCustomerId(id);
+
+            var result = new
+            {
+                result = customerOrdersDetails
+            };
+
+            return this.Ok(result);
+        }
     }
 }

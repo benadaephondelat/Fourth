@@ -46,6 +46,7 @@
     <Compile Include="LinqExtentions.cs" />
     <Compile Include="Models\CustomerDetailsModel.cs" />
     <Compile Include="Models\CustomerGridModel.cs" />
+    <Compile Include="Models\CustomerOrderDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

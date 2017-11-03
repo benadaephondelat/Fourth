@@ -3,3 +3,9 @@
 <h4>@Model.Address</h4>
 <h4>@Model.CompanyName</h4>
 <h4>@Model.CustomerId</h4>
+
+@Html.AjaxGrid(Url.Action("GetOrdersGrid", new { customerId = Model.CustomerId }))
+
+<script>
+    $('.mvc-grid').mvcgrid();
+</script>

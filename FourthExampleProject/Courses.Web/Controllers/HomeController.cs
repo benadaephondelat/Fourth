@@ -62,6 +62,33 @@
         }
 
         [HttpGet]
+        public ActionResult GetOrdersGrid(string customerId)
+        {
+            List<CustomerOrderDetailsGridViewModel> customerOrdersDetails = new List<CustomerOrderDetailsGridViewModel>();
+
+            string route = "http://localhost:58768/api/Customers/GetCustomerOrders/" + customerId;
+
+            Task task = httpClient.GetAsync(route).ContinueWith((resultTask) =>
+            {
+                HttpResponseMessage response = resultTask.Result;
+
+                response.EnsureSuccessStatusCode();
+
+                Task<string> responseTask = response.Content.ReadAsStringAsync();
+
+                responseTask.Wait();
+
+                string jsonString = (JObject.Parse(responseTask.Result)["result"]).ToString();
+
+                customerOrdersDetails = JsonConvert.DeserializeObject<List<CustomerOrderDetailsGridViewModel>>(jsonString);
+            });
+
+            task.Wait();
+
+            return PartialView("_OrdersGrid", customerOrdersDetails);
+        }
+
+        [HttpGet]
         public ActionResult GetCustomer(string customerId)
         {
             //make two requests, one concise view model, print customer info and pass order info to grid

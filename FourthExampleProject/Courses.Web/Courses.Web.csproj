@@ -158,6 +158,7 @@
     </Compile>
     <Compile Include="Models\Customer\ViewModels\CustomerDetailsViewModel.cs" />
     <Compile Include="Models\Customer\ViewModels\CustomerGridViewModel.cs" />
+    <Compile Include="Models\Customer\ViewModels\CustomerOrderDetailsGridViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -209,6 +210,7 @@
     <Content Include="Views\Home\_CustomersGrid.cshtml" />
     <Content Include="Views\Home\CustomersGrid.cshtml" />
     <Content Include="Views\Home\_CustomerDetails.cshtml" />
+    <Content Include="Views\Home\_OrdersGrid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

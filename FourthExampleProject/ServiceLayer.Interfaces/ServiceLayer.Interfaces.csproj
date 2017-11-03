@@ -43,6 +43,7 @@
     <Compile Include="ICustomerService.cs" />
     <Compile Include="ModelsInterfaces\ICustomerDetailsModel.cs" />
     <Compile Include="ModelsInterfaces\ICustomerGridModel.cs" />
+    <Compile Include="ModelsInterfaces\ICustomerOrderDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

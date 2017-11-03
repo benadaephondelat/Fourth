@@ -8,5 +8,7 @@
         IEnumerable<ICustomerGridModel> GetAllCustomers();
 
         ICustomerDetailsModel GetCustomerDetailsById(string customerId);
+
+        IEnumerable<ICustomerOrderDetails> GetCustomerOrdersDetailsByCustomerId(string customerId);
     }
 }
