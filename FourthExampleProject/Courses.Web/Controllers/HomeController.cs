@@ -2,6 +2,7 @@
 {
     using System.Web.Mvc;
     using System.Net.Http;
+    using System.Threading;
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
@@ -9,15 +10,11 @@
 
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
-    using System.Threading;
+    using Helpers;
 
     public class HomeController : Controller
     {
-        /// <summary>
-        /// Why I made it static and not wrap it in a using() or calling Dispose manually
-        /// <seealso cref="https://aspnetmonsters.com/2016/08/2016-08-27-httpclientwrong/"/>
-        /// </summary>
-        private static HttpClient httpClient = new HttpClient();
+        private static HttpClient httpClient = HttpClientSingleton.Instance;
 
         public ActionResult Index()
         {

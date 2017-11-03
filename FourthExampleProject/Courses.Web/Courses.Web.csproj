@@ -156,6 +156,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\HttpClientSingleton.cs" />
     <Compile Include="Models\Customer\ViewModels\CustomerDetailsViewModel.cs" />
     <Compile Include="Models\Customer\ViewModels\CustomerGridViewModel.cs" />
     <Compile Include="Models\Customer\ViewModels\CustomerOrderDetailsGridViewModel.cs" />
