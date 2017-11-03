@@ -1,9 +1,11 @@
 ﻿namespace Courses.Web.Helpers
 {
+    using System;
     using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
     using System.Collections.Generic;
+
     using Newtonsoft.Json.Linq;
 
     public static class AuthorizationHelper
@@ -14,9 +16,12 @@
         public const string Email = "application_user@yahoo.com";
         public const string Password = "123123";
 
+        public const string Authorization = "Authorization";
+        public static DateTime? TokenExpirationDate = null;
+
         public static async Task RegisterUserAndAddTokenInRequestHeader(HttpClient client)
         {
-            var requestContent = GetRegisterFormContent();
+            FormUrlEncodedContent requestContent = GetRegisterFormContent();
 
             HttpResponseMessage response = await client.PostAsync(RegisterUrl, requestContent);
 
@@ -25,21 +30,26 @@
                 throw new HttpRequestException("Unable to register!");
             }
 
-            string accessToken = await GetAuthorizationToken(client);
+            string accessToken = await GetAuthorizationTokenAsync(client);
 
-            client.DefaultRequestHeaders.Add("Authorization", "Bearer " + accessToken);
+            client.DefaultRequestHeaders.Add(Authorization, "Bearer " + accessToken);
         }
 
         public static async Task GetAccessTokenAndAddToRequestHeader(HttpClient client)
         {
-            var accessToken = await GetAuthorizationToken(client);
+            string accessToken = await GetAuthorizationTokenAsync(client);
 
-            client.DefaultRequestHeaders.Add("Authorization", "Bearer " + accessToken);
+            if (client.DefaultRequestHeaders.Contains(Authorization))
+            {
+                client.DefaultRequestHeaders.Remove(Authorization);
+            }
+
+            client.DefaultRequestHeaders.Add(Authorization, "Bearer " + accessToken);
         }
 
-        private static async Task<string> GetAuthorizationToken(HttpClient client)
+        private static async Task<string> GetAuthorizationTokenAsync(HttpClient client)
         {
-            var requestContent = GetAccessTokenFormContent();
+            FormUrlEncodedContent requestContent = GetAccessTokenFormContent();
 
             HttpResponseMessage response = await client.PostAsync(GetTokenUrl, requestContent);
 
@@ -49,7 +59,9 @@
 
                 JObject jObject = JObject.Parse(result);
 
-                var token = jObject.SelectToken("access_token").ToString();
+                string token = jObject.SelectToken("access_token").ToString();
+
+                SetTokenExpirationDate(jObject);
 
                 return token;
             }
@@ -57,9 +69,18 @@
             throw new HttpRequestException("Unable to get access token from the API !");
         }
 
+        private static void SetTokenExpirationDate(JObject jObject)
+        {
+            string tokenExpirationDate = jObject.GetValue(".expires").ToString();
+
+            DateTime tokenExpirationDateTime = DateTime.Parse(tokenExpirationDate);
+
+            TokenExpirationDate = tokenExpirationDateTime;
+        }
+
         private static FormUrlEncodedContent GetRegisterFormContent()
         {
-            var registerForm = new FormUrlEncodedContent(new[]
+            FormUrlEncodedContent registerForm = new FormUrlEncodedContent(new[]
             {
                 new KeyValuePair<string, string>("Email", Email),
                 new KeyValuePair<string, string>("Password", Password),
@@ -71,7 +92,7 @@
 
         private static FormUrlEncodedContent GetAccessTokenFormContent()
         {
-            var accessTokenForm = new FormUrlEncodedContent(new[]
+            FormUrlEncodedContent accessTokenForm = new FormUrlEncodedContent(new[]
             {
                 new KeyValuePair<string, string>("grant_type", "password"),
                 new KeyValuePair<string, string>("Username", Email),

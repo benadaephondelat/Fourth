@@ -11,7 +11,9 @@
     public sealed class HttpClientSingleton
     {
         private static object syncRoot = new object();
+
         private static volatile HttpClient instance = null;
+
         private static Uri BaseAddress = new Uri("http://localhost:58768/");
 
         /// <summary>

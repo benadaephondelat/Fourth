@@ -13,8 +13,6 @@ namespace WebAPI.App_Start
     using Ninject.Modules;
     using Ninject.Web.Common;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-    using ServiceLayer.Interfaces;
-    using Courses.Web.Controllers;
 
     public static class NinjectWebCommon 
     {

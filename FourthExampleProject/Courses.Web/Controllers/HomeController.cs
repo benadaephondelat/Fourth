@@ -7,12 +7,13 @@
     using System.Collections.Generic;
 
     using Helpers;
+    using FrameworkExtentions;
     using Models.Customer.ViewModels;
 
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    //TODO CHECK IF TOKEN IS EXPIRED AND IF SO - RE-AUTHENTICATE
+    [ReAuthenticateIfTokenIsExpired]
     public class HomeController : Controller
     {
         private static HttpClient httpClient = HttpClientSingleton.Instance;
