@@ -22,7 +22,7 @@
         {
             if (httpClient.DefaultRequestHeaders.Contains("Authorization") == false)
             {
-                await AuthorizationHelper.RegisterUserAndAddTokenInRequestHeader(httpClient);
+                await AuthorizationHelper.RegisterOrLoginAndAddAccessTokenToRequestHeaders(httpClient);
             }
 
             return View();

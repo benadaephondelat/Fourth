@@ -19,15 +19,20 @@
         public const string Authorization = "Authorization";
         public static DateTime? TokenExpirationDate = null;
 
-        public static async Task RegisterUserAndAddTokenInRequestHeader(HttpClient client)
+        public static async Task RegisterOrLoginAndAddAccessTokenToRequestHeaders(HttpClient client)
         {
             FormUrlEncodedContent requestContent = GetRegisterFormContent();
 
-            HttpResponseMessage response = await client.PostAsync(RegisterUrl, requestContent);
+            var response = await client.PostAsync(RegisterUrl, requestContent);
 
-            if (response.StatusCode != HttpStatusCode.OK)
+            if (BadRequest(response.StatusCode))
             {
-                throw new HttpRequestException("Unable to register!");
+                var errorMessage = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+
+                if (UserIsNotAlreadyRegistered(errorMessage))
+                {
+                    throw new HttpRequestException("Unable to register or log in!");
+                }
             }
 
             string accessToken = await GetAuthorizationTokenAsync(client);
@@ -101,6 +106,16 @@
             });
 
             return accessTokenForm;
+        }
+
+        private static bool BadRequest(HttpStatusCode statusCode)
+        {
+            return statusCode != HttpStatusCode.OK;
+        }
+
+        private static bool UserIsNotAlreadyRegistered(string errorMessage)
+        {
+            return errorMessage.Contains("already taken") == false;
         }
     }
 }
