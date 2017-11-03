@@ -6,18 +6,24 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
+    using Helpers;
     using Models.Customer.ViewModels;
 
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
-    using Helpers;
 
+    //TODO CHECK IF TOKEN IS EXPIRED AND IF SO - RE-AUTHENTICATE
     public class HomeController : Controller
     {
         private static HttpClient httpClient = HttpClientSingleton.Instance;
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
+            if (httpClient.DefaultRequestHeaders.Contains("Authorization") == false)
+            {
+                await AuthorizationHelper.RegisterUserAndAddTokenInRequestHeader(httpClient);
+            }
+
             return View();
         }
 
@@ -32,7 +38,7 @@
         {
             List<CustomerGridViewModel> customersGridModelList = new List<CustomerGridViewModel>();
 
-            string route = "http://localhost:58768/api/Customers/GetCustomers";
+            string route = "api/Customers/GetCustomers";
 
             CancellationTokenSource cs = new CancellationTokenSource();
 
@@ -63,7 +69,7 @@
         {
             List<CustomerOrderDetailsGridViewModel> customerOrdersDetails = new List<CustomerOrderDetailsGridViewModel>();
 
-            string route = "http://localhost:58768/api/Customers/GetCustomerOrders/" + customerId;
+            string route = "api/Customers/GetCustomerOrders/" + customerId;
 
             Task task = httpClient.GetAsync(route).ContinueWith((resultTask) =>
             {
@@ -88,16 +94,15 @@
         [HttpGet]
         public ActionResult GetCustomer(string customerId)
         {
-            //make two requests, one concise view model, print customer info and pass order info to grid
-            //or make one request is better
-
             CustomerDetailsViewModel customerDetails = new CustomerDetailsViewModel();
 
-            string route = "http://localhost:58768/api/Customers/GetCustomer/" + customerId;
+            string route = "api/Customers/GetCustomer/" + customerId;
 
             Task task = httpClient.GetAsync(route).ContinueWith((resultTask) =>
             {
                 HttpResponseMessage response = resultTask.Result;
+
+                response.EnsureSuccessStatusCode();
 
                 Task<string> responseTask = response.Content.ReadAsStringAsync();
 
@@ -111,20 +116,6 @@
             task.Wait();
 
             return PartialView("_CustomerDetails", customerDetails);
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
         }
     }
 }
