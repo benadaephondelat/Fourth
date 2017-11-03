@@ -6,6 +6,7 @@
     using ServiceLayer.Interfaces;
     using ServiceLayer.Interfaces.ModelsInterfaces;
 
+    [Authorize]
     [RoutePrefix("api/Customers")]
     public class CustomersController : ApiController
     {
