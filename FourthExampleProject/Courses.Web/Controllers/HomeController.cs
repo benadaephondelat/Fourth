@@ -118,5 +118,11 @@
 
             return PartialView("_CustomerDetails", customerDetails);
         }
+
+        [HttpGet]
+        public ActionResult Error()
+        {
+            return View();
+        }
     }
 }

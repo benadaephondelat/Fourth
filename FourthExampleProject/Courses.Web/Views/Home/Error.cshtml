@@ -1,0 +1,9 @@
+﻿@{
+    ViewBag.Title = "Error";
+}
+
+<div id="error-container" class="align-center">
+    <h1>Error.</h1>
+    <h2>An error occurred while processing your request.</h2>
+    @Html.ActionLink("Home Page", "Index", "Home", new { area = "" }, new { @class = "btn btn-primary btn-lg" } })
+</div>
