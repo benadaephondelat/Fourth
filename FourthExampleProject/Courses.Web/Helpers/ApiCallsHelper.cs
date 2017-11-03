@@ -12,7 +12,7 @@
 
     public static class ApiCallsHelper
     {
-        private static int AllowedDelayInResponse = 2000;
+        private static int AllowedDelayInResponse = 5000;
 
         public static List<CustomerOrderDetailsGridViewModel> GetCustomerOrdersDetails(string customerId, List<CustomerOrderDetailsGridViewModel> customerOrdersDetails)
         {
