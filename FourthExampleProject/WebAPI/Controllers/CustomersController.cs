@@ -33,5 +33,19 @@
 
             return this.Ok(result);
         }
+
+        [HttpGet]
+        [Route("GetCustomer/{id}")]
+        public IHttpActionResult GetCustomer(string id)
+        {
+            ICustomerDetailsModel customerDetails = this.customerService.GetCustomerDetailsById(id);
+
+            var result = new
+            {
+                result = customerDetails
+            };
+
+            return this.Ok(result);
+        }
     }
 }

@@ -2,7 +2,7 @@
 {
     using Newtonsoft.Json;
 
-    public class CustomerViewModel
+    public class CustomerGridViewModel
     {
         [JsonProperty("id")]
         public string ID { get; set; }

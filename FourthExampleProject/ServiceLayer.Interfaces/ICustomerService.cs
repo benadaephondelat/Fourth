@@ -6,5 +6,7 @@
     public interface ICustomerService
     {
         IEnumerable<ICustomerGridModel> GetAllCustomers();
+
+        ICustomerDetailsModel GetCustomerDetailsById(string customerId);
     }
 }

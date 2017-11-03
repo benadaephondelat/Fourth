@@ -14,7 +14,7 @@ var customersGridModule = (function (jQuery) {
         addButtonsToGrid,
         gridIsEmpty,
         viewCustomerButtonClickHandler,
-        createGetRequestAjaxCall,
+        getCustomerAjaxCall,
         initiliazieModule;
 
     /* variables */
@@ -22,6 +22,9 @@ var customersGridModule = (function (jQuery) {
         viewCustomerButtonId = 'view-customer-button',
         viewCustomerButtonClass = 'btn btn-success',
         viewCustomerButtonText = 'View';
+
+    /* cached DOM object */
+    var $container = $('#customers-grid-container');
 
     /**
     * Creates a button on a grid row
@@ -34,7 +37,7 @@ var customersGridModule = (function (jQuery) {
         viewCustomersButton.innerHTML = viewCustomerButtonText;
 
         $(this).append(viewCustomersButton);
-    };
+    }
 
     /**
     * Itterates over the grid rows and attaches them a button with an event handler
@@ -73,42 +76,38 @@ var customersGridModule = (function (jQuery) {
             var clickedElementId = event.target.id;
 
             if (clickedElementId === viewCustomerButtonId) {
-                var courseId = $(currentGridRow).find('td.customer-id').html();
+                var customerId = $(currentGridRow).find('td.customer-id').html();
 
-                var data = JSON.stringify({
-                    courseId: courseId
-                });
-
-                createGetRequestAjaxCall(data).done(function (result) {
-                    //TODO
+                getCustomerAjaxCall(customerId).done(function (result) {
+                    $container.html(result);
                 });
             }
         });
     }
 
     /**
-    * Creates a get request ajax call
-    * @param {JSON} request data as JSON object
+    * Makes a GET Ajax request to: getCustomerUrl
+    * @param {string} customerId
     * @returns {Function} ajax get function
     */
-    createGetRequestAjaxCall = function(requestData) {
+    getCustomerAjaxCall = function(customerId) {
         var ajaxCall = $.ajax({
             url: getCustomerUrl,
-            data: requestData,
+            data: { customerId: customerId },
             type: 'GET',
             dataType: 'html',
             async: true
         });
 
         return ajaxCall;
-    };
+    }
 
     /**
     * Initializes the module
     */
     initiliazieModule = function () {
         addButtonsToGrid();
-    };
+    }
 
     return {
         init: initiliazieModule
