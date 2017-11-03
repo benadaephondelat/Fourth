@@ -2,16 +2,13 @@
 {
     using System.Web.Mvc;
     using System.Net.Http;
-    using System.Threading;
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
     using Helpers;
+    using Constants;
     using FrameworkExtentions;
     using Models.Customer.ViewModels;
-
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Linq;
 
     [ReAuthenticateIfTokenIsExpired]
     public class HomeController : Controller
@@ -20,7 +17,7 @@
 
         public async Task<ActionResult> Index()
         {
-            if (httpClient.DefaultRequestHeaders.Contains("Authorization") == false)
+            if (AuthorizationHeaderIsNotPresent())
             {
                 await AuthorizationHelper.RegisterOrLoginAndAddAccessTokenToRequestHeaders(httpClient);
             }
@@ -31,7 +28,7 @@
         [HttpGet]
         public ActionResult CustomersGrid()
         {
-            return View("CustomersGrid");
+            return View(ControllerConstants.CustomersGridView);
         }
 
         [HttpGet]
@@ -39,30 +36,9 @@
         {
             List<CustomerGridViewModel> customersGridModelList = new List<CustomerGridViewModel>();
 
-            string route = "api/Customers/GetCustomers";
+            customersGridModelList = ApiCallsHelper.GetCustomerGridModelList(customersGridModelList);
 
-            CancellationTokenSource cs = new CancellationTokenSource();
-
-            cs.CancelAfter(1000000);
-
-            Task task = httpClient.GetAsync(route, cs.Token).ContinueWith((resultTask) =>
-            {
-                HttpResponseMessage response = resultTask.Result;
-
-                response.EnsureSuccessStatusCode();
-
-                Task<string> responseTask = response.Content.ReadAsStringAsync();
-
-                responseTask.Wait();
-
-                string jsonString = (JObject.Parse(responseTask.Result)["result"]).ToString();
-
-                customersGridModelList = JsonConvert.DeserializeObject<List<CustomerGridViewModel>>(jsonString);
-            });
-
-            task.Wait();
-
-            return PartialView("_CustomersGrid", customersGridModelList);
+            return PartialView(ControllerConstants.CustomersGridPartialView, customersGridModelList);
         }
 
         [HttpGet]
@@ -70,26 +46,9 @@
         {
             List<CustomerOrderDetailsGridViewModel> customerOrdersDetails = new List<CustomerOrderDetailsGridViewModel>();
 
-            string route = "api/Customers/GetCustomerOrders/" + customerId;
+            customerOrdersDetails = ApiCallsHelper.GetCustomerOrdersDetails(customerId, customerOrdersDetails);
 
-            Task task = httpClient.GetAsync(route).ContinueWith((resultTask) =>
-            {
-                HttpResponseMessage response = resultTask.Result;
-
-                response.EnsureSuccessStatusCode();
-
-                Task<string> responseTask = response.Content.ReadAsStringAsync();
-
-                responseTask.Wait();
-
-                string jsonString = (JObject.Parse(responseTask.Result)["result"]).ToString();
-
-                customerOrdersDetails = JsonConvert.DeserializeObject<List<CustomerOrderDetailsGridViewModel>>(jsonString);
-            });
-
-            task.Wait();
-
-            return PartialView("_OrdersGrid", customerOrdersDetails);
+            return PartialView(ControllerConstants.OrdersGridPartialView, customerOrdersDetails);
         }
 
         [HttpGet]
@@ -97,32 +56,24 @@
         {
             CustomerDetailsViewModel customerDetails = new CustomerDetailsViewModel();
 
-            string route = "api/Customers/GetCustomer/" + customerId;
+            customerDetails = ApiCallsHelper.GetCustomerDetails(customerId, customerDetails);
 
-            Task task = httpClient.GetAsync(route).ContinueWith((resultTask) =>
-            {
-                HttpResponseMessage response = resultTask.Result;
-
-                response.EnsureSuccessStatusCode();
-
-                Task<string> responseTask = response.Content.ReadAsStringAsync();
-
-                responseTask.Wait();
-
-                string jsonString = (JObject.Parse(responseTask.Result)["result"]).ToString();
-
-                customerDetails = JsonConvert.DeserializeObject<CustomerDetailsViewModel>(jsonString);
-            });
-
-            task.Wait();
-
-            return PartialView("_CustomerDetails", customerDetails);
+            return PartialView(ControllerConstants.CustomerDetailsPartialView, customerDetails);
         }
 
         [HttpGet]
         public ActionResult Error()
         {
             return View();
+        }
+
+        /// <summary>
+        /// Checks if there is a Authorization header in the default request headers
+        /// </summary>
+        /// <returns>bool</returns>
+        private static bool AuthorizationHeaderIsNotPresent()
+        {
+            return httpClient.DefaultRequestHeaders.Contains("Authorization") == false;
         }
     }
 }
