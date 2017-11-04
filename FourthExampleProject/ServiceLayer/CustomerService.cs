@@ -7,7 +7,10 @@
     using Interfaces;
     using DataLayer.Interfaces;
     using Interfaces.ModelsInterfaces;
+    using Exceptions.Customer;
+    using global::Models;
 
+    //TODO REFACTOR USING FACTORY PATTERN
     public class CustomerService : ICustomerService
     {
         private IData data;
@@ -37,17 +40,16 @@
 
         public ICustomerDetailsModel GetCustomerDetailsById(string customerId)
         {
-            var customer = this.data.Customers.All().Where(c => c.CustomerID == customerId)
-                                                    .FirstOrDefault();
+            Customer customer = this.data.Customers.All().Where(c => c.CustomerID == customerId).FirstOrDefault();
 
             if (customer == null)
             {
-                //TODO
+                throw new CustomerNotFoundException();
             }
 
-            var result = LinqExtentions.CreateCustomerDetailsModel(customer);
+            ICustomerDetailsModel customerDetailsModel = LinqExtentions.CreateCustomerDetailsModel(customer);
 
-            return result;
+            return customerDetailsModel;
         }
 
         public IEnumerable<ICustomerOrderDetails> GetCustomerOrdersDetailsByCustomerId(string customerId)
@@ -56,7 +58,7 @@
 
             if (customer == null)
             {
-                //TODO
+                throw new CustomerNotFoundException();
             }
 
             var result = customer.Orders.Select(o => new CustomerOrderDetails

@@ -92,6 +92,7 @@
             CustomerID = MockConstants.CustomerWithoutOrdersId,
             CompanyName = MockConstants.CustomerWithoutOrdersCompanyName,
             ContactName = MockConstants.CustomerWithoutOrdersContactName,
+            ContactTitle = MockConstants.CustomerWithoutOrdersContactTitle,
             Address = MockConstants.CustomerWithoutOrdersAddress,
             City = MockConstants.CustomerWithoutOrdersCity,
             Region = MockConstants.CustomerWithoutOrdersRegion,

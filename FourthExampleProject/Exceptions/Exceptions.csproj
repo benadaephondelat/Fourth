@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{62B492E9-A408-42D0-BA28-BF692031F5BA}</ProjectGuid>
+    <ProjectGuid>{3BAF2009-D510-4842-BBD0-227AB36588D4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ServiceLayer</RootNamespace>
-    <AssemblyName>ServiceLayer</AssemblyName>
+    <RootNamespace>Exceptions</RootNamespace>
+    <AssemblyName>Exceptions</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,8 +32,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
-    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,30 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomerService.cs" />
-    <Compile Include="LinqExtentions.cs" />
-    <Compile Include="Models\CustomerDetailsModel.cs" />
-    <Compile Include="Models\CustomerGridModel.cs" />
-    <Compile Include="Models\CustomerOrderDetails.cs" />
+    <Compile Include="CustomersApplicationException.cs" />
+    <Compile Include="Customer\CustomerNotFoundException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DataLayer.Interfaces\DataLayer.Interfaces.csproj">
-      <Project>{9a6f18e2-c64a-4bb3-8016-8c733ae96839}</Project>
-      <Name>DataLayer.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Exceptions\Exceptions.csproj">
-      <Project>{3BAF2009-D510-4842-BBD0-227AB36588D4}</Project>
-      <Name>Exceptions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Models\Models.csproj">
-      <Project>{2d3be6d0-9bfd-4f25-a565-5624352f986e}</Project>
-      <Name>Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ServiceLayer.Interfaces\ServiceLayer.Interfaces.csproj">
-      <Project>{E4C84018-F9C8-4D3C-92D5-519EE28AEDE7}</Project>
-      <Name>ServiceLayer.Interfaces</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

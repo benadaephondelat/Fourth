@@ -161,5 +161,11 @@ namespace ServiceLayer.Tests.Helpers
         public static bool ProductDiscontinued = false;
 
         #endregion
+
+        #region Invalid Data
+
+        public static string InvalidCustomerId = "INVAL";
+
+        #endregion
     }
 }

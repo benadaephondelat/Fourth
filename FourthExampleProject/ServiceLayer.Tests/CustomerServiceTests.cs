@@ -10,6 +10,7 @@
     using Interfaces.ModelsInterfaces;
     using System.Collections.Generic;
     using global::Models;
+    using Exceptions.Customer;
 
     [TestClass]
     public class CustomerServiceTests
@@ -130,6 +131,105 @@
             dataMock.Setup(p => p.Customers).Returns(customersRepoMock);
 
             this.customerService = new CustomerService(dataMock.Object);
+        }
+
+        #endregion
+
+        #region GetCustomerDetailsById Tests
+
+        [TestMethod]
+        [ExpectedException(typeof(CustomerNotFoundException))]
+        public void GetCustomerDetailsById_Should_Throw_CustomerNotFoundException_If_There_Is_No_User_With_Such_Id_In_The_Database()
+        {
+            this.customerService.GetCustomerDetailsById(MockConstants.InvalidCustomerId);
+        }
+
+        [TestMethod]
+        public void GetCustomerDetailsById_Should_Return_CustomerDetailsModel_With_Valid_CustomerId()
+        {
+            ICustomerDetailsModel customerDetails = this.customerService.GetCustomerDetailsById(MockConstants.CustomerWithoutOrdersId);
+
+            Assert.IsFalse(string.IsNullOrWhiteSpace(customerDetails.CustomerId));
+        }
+
+        [TestMethod]
+        public void GetCustomerDetailsById_Should_Return_CustomerDetailsModel_With_Valid_CompanyName()
+        {
+            ICustomerDetailsModel customerDetails = this.customerService.GetCustomerDetailsById(MockConstants.CustomerWithoutOrdersId);
+
+            Assert.IsFalse(string.IsNullOrWhiteSpace(customerDetails.CompanyName));
+        }
+
+        [TestMethod]
+        public void GetCustomerDetailsById_Should_Return_CustomerDetailsModel_With_Valid_ContactName()
+        {
+            ICustomerDetailsModel customerDetails = this.customerService.GetCustomerDetailsById(MockConstants.CustomerWithoutOrdersId);
+
+            Assert.IsFalse(string.IsNullOrWhiteSpace(customerDetails.ContactName));
+        }
+
+        [TestMethod]
+        public void GetCustomerDetailsById_Should_Return_CustomerDetailsModel_With_Valid_ContactTitle()
+        {
+            ICustomerDetailsModel customerDetails = this.customerService.GetCustomerDetailsById(MockConstants.CustomerWithoutOrdersId);
+
+            Assert.IsFalse(string.IsNullOrWhiteSpace(customerDetails.ContactTitle));
+        }
+
+        [TestMethod]
+        public void GetCustomerDetailsById_Should_Return_CustomerDetailsModel_With_Valid_Address()
+        {
+            ICustomerDetailsModel customerDetails = this.customerService.GetCustomerDetailsById(MockConstants.CustomerWithoutOrdersId);
+
+            Assert.IsFalse(string.IsNullOrWhiteSpace(customerDetails.Address));
+        }
+
+        [TestMethod]
+        public void GetCustomerDetailsById_Should_Return_CustomerDetailsModel_With_Valid_City()
+        {
+            ICustomerDetailsModel customerDetails = this.customerService.GetCustomerDetailsById(MockConstants.CustomerWithoutOrdersId);
+
+            Assert.IsFalse(string.IsNullOrWhiteSpace(customerDetails.City));
+        }
+
+        [TestMethod]
+        public void GetCustomerDetailsById_Should_Return_CustomerDetailsModel_With_Valid_Country()
+        {
+            ICustomerDetailsModel customerDetails = this.customerService.GetCustomerDetailsById(MockConstants.CustomerWithoutOrdersId);
+
+            Assert.IsFalse(string.IsNullOrWhiteSpace(customerDetails.Country));
+        }
+
+        [TestMethod]
+        public void GetCustomerDetailsById_Should_Return_CustomerDetailsModel_With_Valid_Region()
+        {
+            ICustomerDetailsModel customerDetails = this.customerService.GetCustomerDetailsById(MockConstants.CustomerWithoutOrdersId);
+
+            Assert.IsFalse(string.IsNullOrWhiteSpace(customerDetails.Region));
+        }
+
+        [TestMethod]
+        public void GetCustomerDetailsById_Should_Return_CustomerDetailsModel_With_Valid_PostalCode()
+        {
+            ICustomerDetailsModel customerDetails = this.customerService.GetCustomerDetailsById(MockConstants.CustomerWithoutOrdersId);
+
+            Assert.IsFalse(string.IsNullOrWhiteSpace(customerDetails.PostalCode));
+        }
+
+        [TestMethod]
+        public void GetCustomerDetailsById_Should_Return_CustomerDetailsModel_With_Valid_Phone()
+        {
+            ICustomerDetailsModel customerDetails = this.customerService.GetCustomerDetailsById(MockConstants.CustomerWithoutOrdersId);
+
+            Assert.IsFalse(string.IsNullOrWhiteSpace(customerDetails.Phone));
+        }
+
+        [TestMethod]
+        public void GetCustomerDetailsById_Should_Return_CustomerDetailsModel_With_Valid_Fax()
+        {
+            ICustomerDetailsModel customerDetails = this.customerService.GetCustomerDetailsById(MockConstants.CustomerWithoutOrdersId);
+
+            Assert.IsFalse(string.IsNullOrWhiteSpace(customerDetails.Fax));
         }
 
         #endregion
