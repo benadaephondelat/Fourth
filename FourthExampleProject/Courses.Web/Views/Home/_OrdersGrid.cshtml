@@ -4,9 +4,10 @@
     .Grid(Model)
     .Build(columns =>
     {
-        columns.Add(model => model.OrderSum).Titled("Order Total Sum");
+        columns.Add(model => model.OrderSum).Titled("Order Sum without shipping");
+        columns.Add(model => model.OrderSumWithFreight).Titled("Order Sum with shipping");
         columns.Add(model => model.ProductsCount).Titled("Order Products Count");
-        columns.Add(model => model.PossibleProblem).Titled("Possible problem?");
+        columns.Add(model => model.PossibleProblem ? "Possible problem" : "No Possible Problem").Titled("Possible problem?");
     })
     .Pageable(pager =>
     {

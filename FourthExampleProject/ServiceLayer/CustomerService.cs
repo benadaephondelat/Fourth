@@ -19,6 +19,11 @@
 
         public IEnumerable<ICustomerGridModel> GetAllCustomers()
         {
+            if (this.data.Customers.All().Any() == false)
+            {
+                return new List<CustomerGridModel>();
+            }
+
             var customers = this.data.Customers.All().Select(c => new CustomerGridModel
             {
                 Id = c.CustomerID,
@@ -58,6 +63,7 @@
             {
                 ProductsCount = o.Order_Details.Sum(d => d.Quantity),
                 OrderSum = o.Order_Details.Sum(d => d.Discount == 0 ? d.Quantity * d.UnitPrice : d.Quantity * d.UnitPrice - ((d.Quantity * d.UnitPrice) * (decimal)d.Discount) ),
+                OrderSumWithFreight = o.Order_Details.Sum(d => d.Discount == 0 ? d.Quantity * d.UnitPrice : d.Quantity * d.UnitPrice - ((d.Quantity * d.UnitPrice) * (decimal)d.Discount)) + o.Freight ?? 0,
                 PossibleProblem = o.Order_Details.Any(d => d.Product.Discontinued || d.Product.UnitsInStock < d.Product.UnitsOnOrder)
             }).OrderByDescending(c => c.OrderSum).ToList();
 

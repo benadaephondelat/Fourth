@@ -7,6 +7,9 @@
         [JsonProperty("orderSum")]
         public decimal OrderSum { get; set; }
 
+        [JsonProperty("orderSumWithFreight")]
+        public decimal OrderSumWithFreight { get; set; }
+
         [JsonProperty("productsCount")]
         public int ProductsCount { get; set; }
 

@@ -89,6 +89,10 @@
       <Project>{9A6F18E2-C64A-4BB3-8016-8C733AE96839}</Project>
       <Name>DataLayer.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{2D3BE6D0-9BFD-4F25-A565-5624352F986E}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ServiceLayer.Interfaces\ServiceLayer.Interfaces.csproj">
       <Project>{E4C84018-F9C8-4D3C-92D5-519EE28AEDE7}</Project>
       <Name>ServiceLayer.Interfaces</Name>
