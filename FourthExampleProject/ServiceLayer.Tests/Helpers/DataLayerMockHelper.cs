@@ -132,6 +132,84 @@
                     ShipRegion = MockConstants.ShipRegion,
                     ShipPostalCode = MockConstants.ShipPostalCode,
                     ShipCountry = MockConstants.ShipCountry,
+                    Order_Details = new List<Order_Detail>()
+                    {
+                        new Order_Detail()
+                        {
+                            OrderID = MockConstants.OrderID,
+                            Discount = MockConstants.OrderDiscount,
+                            Quantity = MockConstants.OrderQuantity,
+                            UnitPrice = MockConstants.OrderUnitPrice,
+                            Product = new Product()
+                            {
+                                ProductID = MockConstants.ProductID,
+                                ProductName = MockConstants.ProductName,
+                                SupplierID = MockConstants.ProductSupplierID,
+                                CategoryID = MockConstants.ProductCategoryID,
+                                QuantityPerUnit = MockConstants.ProductQuantityPerUnit,
+                                UnitPrice = MockConstants.ProductUnitPrice,
+                                UnitsInStock = MockConstants.ProductUnitsInStock,
+                                UnitsOnOrder = MockConstants.ProductUnitsOnOrder,
+                                ReorderLevel = MockConstants.ProductReorderLevel,
+                                Discontinued = MockConstants.ProductDiscontinued,
+                                Order_Details = new List<Order_Detail>()
+                            }
+                        }
+                    },
+                    Customer = new Customer()
+                    {
+                        CustomerID = MockConstants.CustomerWithOrdersId,
+                        CompanyName = MockConstants.CustomerWithOrdersCompanyName,
+                        ContactName = MockConstants.CustomerWithOrdersContactName,
+                        Address = MockConstants.CustomerWithOrdersAddress,
+                        City = MockConstants.CustomerWithOrdersCity,
+                        Region = MockConstants.CustomerWithOrdersRegion,
+                        PostalCode = MockConstants.CustomerWithOrdersPostalCode,
+                        Country = MockConstants.CustomerWithOrdersCountry,
+                        Phone = MockConstants.CustomerWithOrdersPhone,
+                        Fax = MockConstants.CustomerWithOrdersFax,
+                        Orders = new List<Order>()
+                    },
+                },
+                new Order()
+                {
+                    OrderID = MockConstants.SecondOrderId,
+                    CustomerID = MockConstants.CustomerWithOrdersId,
+                    EmployeeID = null,
+                    OrderDate = MockConstants.OrderDate,
+                    RequiredDate = MockConstants.RequiredDate,
+                    ShippedDate = MockConstants.ShippedDate,
+                    ShipVia = null,
+                    Freight = MockConstants.SecondOrderFreightCost,
+                    ShipName = MockConstants.ShipName,
+                    ShipCity = MockConstants.ShipCity,
+                    ShipRegion = MockConstants.ShipRegion,
+                    ShipPostalCode = MockConstants.ShipPostalCode,
+                    ShipCountry = MockConstants.ShipCountry,
+                    Order_Details = new List<Order_Detail>()
+                    {
+                        new Order_Detail()
+                        {
+                            OrderID = MockConstants.SecondOrderId,
+                            Discount = MockConstants.SecondOrderDiscount,
+                            Quantity = MockConstants.SecondOrderQuantity,
+                            UnitPrice = MockConstants.SecondOrderUnitPrice,
+                            Product = new Product()
+                            {
+                                ProductID = 2,
+                                ProductName = MockConstants.ProductName,
+                                SupplierID = MockConstants.ProductSupplierID,
+                                CategoryID = MockConstants.ProductCategoryID,
+                                QuantityPerUnit = MockConstants.ProductQuantityPerUnit,
+                                UnitPrice = MockConstants.ProductUnitPrice,
+                                UnitsInStock = 100,
+                                UnitsOnOrder = 10,
+                                ReorderLevel = MockConstants.ProductReorderLevel,
+                                Discontinued = false,
+                                Order_Details = new List<Order_Detail>()
+                            }
+                        }
+                    },
                     Customer = new Customer()
                     {
                         CustomerID = MockConstants.CustomerWithOrdersId,

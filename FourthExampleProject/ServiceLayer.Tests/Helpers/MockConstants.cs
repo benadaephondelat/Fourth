@@ -84,6 +84,20 @@ namespace ServiceLayer.Tests.Helpers
 
         #endregion
 
+        #region SecondOrder
+
+        public static int SecondOrderId = 2;
+
+        public static decimal? SecondOrderFreightCost = 150M;
+
+        public static float SecondOrderDiscount = 0.10F;
+
+        public static short SecondOrderQuantity = 10;
+
+        public static decimal SecondOrderUnitPrice = 10;
+
+        #endregion
+
         #region Employee
 
         public static int EmployeeID = 1;

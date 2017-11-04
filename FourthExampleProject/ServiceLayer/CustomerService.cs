@@ -3,14 +3,13 @@
     using System.Linq;
     using System.Collections.Generic;
 
+    using global::Models;
     using Models;
     using Interfaces;
-    using DataLayer.Interfaces;
     using Interfaces.ModelsInterfaces;
+    using DataLayer.Interfaces;
     using Exceptions.Customer;
-    using global::Models;
 
-    //TODO REFACTOR USING FACTORY PATTERN
     public class CustomerService : ICustomerService
     {
         private IData data;
@@ -40,7 +39,7 @@
 
         public ICustomerDetailsModel GetCustomerDetailsById(string customerId)
         {
-            Customer customer = this.data.Customers.All().Where(c => c.CustomerID == customerId).FirstOrDefault();
+            Customer customer = this.data.Customers.All().FirstOrDefault(c => c.CustomerID == customerId);
 
             if (customer == null)
             {
