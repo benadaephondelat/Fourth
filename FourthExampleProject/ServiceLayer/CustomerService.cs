@@ -9,6 +9,7 @@
     using Interfaces.ModelsInterfaces;
     using DataLayer.Interfaces;
     using Exceptions.Customer;
+    using Helpers;
 
     public class CustomerService : ICustomerService
     {
@@ -39,26 +40,16 @@
 
         public ICustomerDetailsModel GetCustomerDetailsById(string customerId)
         {
-            Customer customer = this.data.Customers.All().FirstOrDefault(c => c.CustomerID == customerId);
+            Customer customer = this.GetCustomerById(customerId);
 
-            if (customer == null)
-            {
-                throw new CustomerNotFoundException();
-            }
-
-            ICustomerDetailsModel customerDetailsModel = LinqExtentions.CreateCustomerDetailsModel(customer);
+            ICustomerDetailsModel customerDetailsModel = ObjectMappingHelper.CreateCustomerDetailsModel(customer);
 
             return customerDetailsModel;
         }
 
         public IEnumerable<ICustomerOrderDetails> GetCustomerOrdersDetailsByCustomerId(string customerId)
         {
-            var customer = this.data.Customers.All().FirstOrDefault(c => c.CustomerID == customerId);
-
-            if (customer == null)
-            {
-                throw new CustomerNotFoundException();
-            }
+            Customer customer = this.GetCustomerById(customerId);
 
             var result = customer.Orders.Select(o => new CustomerOrderDetails
             {
@@ -69,6 +60,24 @@
             }).OrderByDescending(c => c.OrderSum).ToList();
 
             return result;
+        }
+
+        /// <summary>
+        /// Rerturns a Customer or throws an exception
+        /// </summary>
+        /// <param name="customerId">id of the customer</param>
+        /// <exception cref="CustomerNotFoundException"></exception>
+        /// <returnsCustomer></returns>
+        private Customer GetCustomerById(string customerId)
+        {
+            Customer customer = this.data.Customers.All().FirstOrDefault(c => c.CustomerID == customerId);
+
+            if (customer == null)
+            {
+                throw new CustomerNotFoundException();
+            }
+
+            return customer;
         }
     }
 }

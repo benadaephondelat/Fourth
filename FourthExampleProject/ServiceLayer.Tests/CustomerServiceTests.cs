@@ -411,6 +411,29 @@
             Assert.IsFalse(secondOrder.PossibleProblem);
         }
 
+        [TestMethod]
+        public void GetCustomerOrdersDetailsByCustomerId_Orders_Should_Be_Sorted_By_Descending_By_Order_Sum()
+        {
+            var customerOrdersDetails = this.customerService.GetCustomerOrdersDetailsByCustomerId(MockConstants.CustomerWithOrdersId);
+
+            for (var i = 0; i < customerOrdersDetails.Count(); i++)
+            {
+                decimal currentOrderSum = customerOrdersDetails.ElementAt(i).OrderSum;
+
+                for(var j = i + 1; j < customerOrdersDetails.Count(); j++)
+                {
+                    decimal nextOrderSum = customerOrdersDetails.ElementAt(j).OrderSum;
+
+                    if (nextOrderSum > currentOrderSum)
+                    {
+                        Assert.Fail();
+                    }
+                }
+            }
+
+            Assert.IsTrue(true);
+        }
+
         #endregion
     }
 }

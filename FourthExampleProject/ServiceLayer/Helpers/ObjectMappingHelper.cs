@@ -1,16 +1,16 @@
-﻿namespace ServiceLayer
-{
-    using global::Models;
-    using Models;
+﻿using Models;
+using ServiceLayer.Models;
 
-    public static class LinqExtentions
+namespace ServiceLayer.Helpers
+{
+    public static class ObjectMappingHelper
     {
         /// <summary>
         /// Creates a CustomerDetailsModel from a given Customer model
         /// </summary>
         /// <param name="source">Customer</param>
         /// <returns>CustomerDetailsModel</returns>
-        public static CustomerDetailsModel CreateCustomerDetailsModel(this Customer source)
+        public static CustomerDetailsModel CreateCustomerDetailsModel(Customer source)
         {
             CustomerDetailsModel customerDetails = new CustomerDetailsModel();
 

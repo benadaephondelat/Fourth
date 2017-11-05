@@ -25,3 +25,14 @@ FourthExampleProject/ServiceLayer.Tests/obj/
 FourthExampleProject/ServiceLayer.Tests/bin/
 FourthExampleProject/Exceptions/obj/
 FourthExampleProject/Exceptions/bin/Debug/
+FourthExampleProject/Bootstrapper/bin/
+FourthExampleProject/Courses.Web/obj/Release/
+FourthExampleProject/DataLayer.Interfaces/bin/
+FourthExampleProject/DataLayer/bin/
+FourthExampleProject/DataLayer/obj/
+FourthExampleProject/Models/obj/Release/
+FourthExampleProject/ServiceLayer.Interfaces/bin/
+FourthExampleProject/ServiceLayer/bin/
+FourthExampleProject/WebAPI/obj/Release/
+FourthExampleProject/Exceptions/bin/
+FourthExampleProject/Bootstrapper/obj/

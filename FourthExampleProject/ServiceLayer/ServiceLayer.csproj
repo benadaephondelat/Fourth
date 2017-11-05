@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomerService.cs" />
-    <Compile Include="LinqExtentions.cs" />
+    <Compile Include="Helpers\ObjectMappingHelper.cs" />
     <Compile Include="Models\CustomerDetailsModel.cs" />
     <Compile Include="Models\CustomerGridModel.cs" />
     <Compile Include="Models\CustomerOrderDetails.cs" />
@@ -67,6 +67,7 @@
       <Name>ServiceLayer.Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
