@@ -1,16 +1,18 @@
-﻿namespace ServiceLayer
+﻿using System.Linq;
+using System.Collections.Generic;
+
+using ServiceLayer.Models;
+using ServiceLayer.Helpers;
+using ServiceLayer.Interfaces;
+using ServiceLayer.LinqExtentions;
+using ServiceLayer.Interfaces.ModelsInterfaces;
+
+using Models;
+using DataLayer.Interfaces;
+using Exceptions.Customer;
+
+namespace ServiceLayer
 {
-    using System.Linq;
-    using System.Collections.Generic;
-
-    using global::Models;
-    using Models;
-    using Interfaces;
-    using Interfaces.ModelsInterfaces;
-    using DataLayer.Interfaces;
-    using Exceptions.Customer;
-    using Helpers;
-
     public class CustomerService : ICustomerService
     {
         private IData data;
@@ -22,7 +24,7 @@
 
         public IEnumerable<ICustomerGridModel> GetAllCustomers()
         {
-            if (this.data.Customers.All().Any() == false)
+            if (ThereIsNoCustomers())
             {
                 return new List<CustomerGridModel>();
             }
@@ -54,8 +56,8 @@
             var result = customer.Orders.Select(o => new CustomerOrderDetails
             {
                 ProductsCount = o.Order_Details.Sum(d => d.Quantity),
-                OrderSum = o.Order_Details.Sum(d => d.Discount == 0 ? d.Quantity * d.UnitPrice : d.Quantity * d.UnitPrice - ((d.Quantity * d.UnitPrice) * (decimal)d.Discount) ),
-                OrderSumWithFreight = o.Order_Details.Sum(d => d.Discount == 0 ? d.Quantity * d.UnitPrice : d.Quantity * d.UnitPrice - ((d.Quantity * d.UnitPrice) * (decimal)d.Discount)) + o.Freight ?? 0,
+                OrderSum = o.Order_Details.GetOrdersSum(),
+                OrderSumWithFreight = o.Order_Details.GetOrdersSumWithFreight(o.Freight),
                 PossibleProblem = o.Order_Details.Any(d => d.Product.Discontinued || d.Product.UnitsInStock < d.Product.UnitsOnOrder)
             }).OrderByDescending(c => c.OrderSum).ToList();
 
@@ -78,6 +80,15 @@
             }
 
             return customer;
+        }
+
+        /// <summary>
+        /// Checks if there are no customers in the database
+        /// </summary>
+        /// <returns>bool</returns>
+        private bool ThereIsNoCustomers()
+        {
+            return this.data.Customers.All().Any() == false;
         }
     }
 }
