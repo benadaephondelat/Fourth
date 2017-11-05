@@ -44,6 +44,9 @@
     <Compile Include="ModelsInterfaces\ICustomerDetailsModel.cs" />
     <Compile Include="ModelsInterfaces\ICustomerGridModel.cs" />
     <Compile Include="ModelsInterfaces\ICustomerOrderDetails.cs" />
+    <Compile Include="Models\CustomerDetailsModel.cs" />
+    <Compile Include="Models\CustomerGridModel.cs" />
+    <Compile Include="Models\CustomerOrderDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

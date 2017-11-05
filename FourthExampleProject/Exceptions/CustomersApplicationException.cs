@@ -9,7 +9,7 @@
     [Serializable]
     public abstract class CustomersApplicationException : Exception
     {
-        public static new string CustomMessage = "Customers Registration System Main Exception.";
+        public static string CustomMessage = "Customers Registration System Main Exception.";
 
         public CustomersApplicationException() : base()
         {

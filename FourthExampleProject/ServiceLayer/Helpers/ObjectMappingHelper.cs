@@ -1,5 +1,5 @@
 ﻿using Models;
-using ServiceLayer.Models;
+using ServiceLayer.Interfaces.Models;
 
 namespace ServiceLayer.Helpers
 {

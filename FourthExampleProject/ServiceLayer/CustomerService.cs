@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
 
-using ServiceLayer.Models;
 using ServiceLayer.Helpers;
 using ServiceLayer.Interfaces;
 using ServiceLayer.LinqExtentions;
+using ServiceLayer.Interfaces.Models;
 using ServiceLayer.Interfaces.ModelsInterfaces;
 
 using Models;

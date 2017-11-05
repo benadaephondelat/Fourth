@@ -1,6 +1,6 @@
-﻿namespace ServiceLayer.Models
+﻿namespace ServiceLayer.Interfaces.Models
 {
-    using Interfaces.ModelsInterfaces;
+    using ModelsInterfaces;
 
     public class CustomerDetailsModel : ICustomerDetailsModel
     {

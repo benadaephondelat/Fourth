@@ -1,5 +1,6 @@
 ﻿namespace DataLayer.Tests
 {
+    using System;
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
@@ -10,6 +11,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
+    [Obsolete("Use testing database, not the real one. If you call SaveChanges here it will save to the prod database!")]
     public class GenericRepositoryTests
     {
         private IData data;
