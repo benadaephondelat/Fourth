@@ -217,6 +217,7 @@
     <Content Include="Views\Home\_CustomerDetails.cshtml" />
     <Content Include="Views\Home\_OrdersGrid.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\Home\ReadMe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

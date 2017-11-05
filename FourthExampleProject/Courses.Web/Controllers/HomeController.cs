@@ -67,6 +67,12 @@
             return View();
         }
 
+        [HttpGet]
+        public ActionResult ReadMe()
+        {
+            return View();
+        }
+
         /// <summary>
         /// Checks if there is a Authorization header in the default request headers
         /// </summary>

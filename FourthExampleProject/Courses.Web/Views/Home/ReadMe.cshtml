@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "ReadMe";
+}
+
+<h2>ReadMe</h2>
+
+<div id="error-container" class="align-center">
+    <h1>Web API</h1>
+    <p>
+        The exception handling is not done properly, in the case of the api layer - when something went wrong
+        it should have returned the proper HttpStatus with the appropriate message.
+        I think it's a perfect job for an action filter.
+    </p>
+    <h1>Web Tests</h1>
+    <p>
+        The tests are positive tests, and the purpose of the test is to reveal bugs rather than showing their absence.
+        The authorization tests need the actual database :( Some testing database would be appropriate
+    </p>
+    <h1>Service Layer</h1>
+    <p>
+        The service layer should be refactored using some design pattern, because if we keep adding
+        methods to it, it will grow to be a very fat class.
+        I usually preffer some AbstractFactory that returns Creator, Reader, Updated and Deleter factories
+        to handle the respective CRUD operations on the database.
+        In my defence I preffered to spend time testing the service layer, since when there are proper unit tests
+        the refactoring is easy and a lot of fun.
+    </p>
+    <h1>Presentation Layer</h1>
+    <p>
+        The lack of tests and proper error handling via some action filters OnError....
+        The lack of JavaScript tests...
+    </p>
+    <h1>Bootstrapper</h1>
+    <p>
+        I do not like the fact that if that project fails everything fails, but right now
+        this is one of the few ways that I know of that enables me to de-couple the architecture.
+        The default ASP.NET MVC5 authentication requires the knowledge of the DatabaseContext
+        and that's why I have those configurations in that project.
+    </p>
+    <h1>Logic</h1>
+    <p>
+        I do not know if I have to multiply the Order_Details.Quantity and the Order_Details.UnitPrice
+        or the Order_Details.Quantity and the Product.UnitPrice. I chose the Order_Details.Quantity * the Order_Details.UnitPrice
+    </p>
+    <h1>Summary</h1>
+    <p>
+        This is the best that I can do for 3 and a half days.
+        Thank you.
+    </p>
+
+    @Html.ActionLink("Home Page", "Index", "Home", new { area = "" }, new { @class = "btn btn-primary btn-lg" })
+</div>
